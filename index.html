@@ -7,12 +7,25 @@
     <meta name="author" content=" FILL ME IN ">
     <title>Cameron Pittman: Portfolio</title>
 
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <!-- Hmm, what is the impact of web fonts on speed? Measure it...
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">-->
+
+
 
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/print.min.css" rel="stylesheet" media="print">
+    <script>
+      var font = new FontFace("Awesome Font", "url(//fonts.googleapis.com/css?family=Open+Sans:400,700)", {
+        style: 'normal', unicodeRange: 'U+000-5FF', weight: '400'
+      });
 
+      font.load();
+      font.ready().then(function() {
+        document.fonts.add(font);
+        document.body.style.fontFamily = "Awesome Font, serif";
+      });
+
+    </script>
 
     <script async src="js/perfmatters.js"></script>
   </head>
