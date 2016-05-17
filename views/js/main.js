@@ -448,8 +448,12 @@ var resizePizzas = function(size) {
     return dx;
   }
 
-  //Kyle Cardiel - pulled all reptitive computations which were all the same outside of for loop
-  //              which chnaged the pizza side.
+  //Kyle Cardiel - Web Optimization
+  //Pulled all repteitive computations (which were all the same) outside of for loop
+  //that calculated the new pizza side. Removing repetitive calculations from loops
+  // is more than just for web optimization, but for all coding optimizations.
+  //Now the javascript code only has to apply the new width size to all the pizza for each
+  //iteration.
   var $randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
   var dx = determineDx($randomPizzaContainer[0], size);
   var newwidth = ($randomPizzaContainer[0].offsetWidth + dx) + 'px';
@@ -507,10 +511,15 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  //Kyle Cardiel - Web Optimization
+  //Same as above. Pulled all repteitive computations (which were all the same) outside of for loop
+  //that calculated the new pizza position. Removing repetitive calculations from loops
+  //is more than just for web optimization, but for all coding optimizations.
+  //Now the javascript code can calucate new position quicker.
   var items = document.querySelectorAll('.mover');
   var itemsLength = items.length;
-
   var scrollTop = (document.body.scrollTop / 1250);
+
   for (var i = 0; i < itemsLength; i++) {
     var phase = Math.sin(scrollTop + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
