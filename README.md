@@ -10,9 +10,14 @@
 
 Portfolio page I made the following changes:
 1. Decreased the size of the pizzeria picture while still keeping it large enough to see clearly. The Original JPEG iimage was way larger than needed to be to display so small on the site.
-1. Made the javascript call for google-analytics an async call since it was not needed during the load.
-1. Based on Google-PageSpeed test I changed the implementation of the font family download with the @font-face annotation.
-1. Created a "min" version of CSS and linked that for the index.html to load.
+
+2. Made the javascript call for google-analytics an async call since it was not needed during the load.
+
+3. Based on Google-PageSpeed test I changed the implementation of the font family download with the @font-face annotation.
+
+4. Created a "min" version of CSS and linked that for the index.html to load.
+
 
 Pizzeria page I made the following changes:
+
 1. I removed repetitive and costly calcuations from inside of loops to outside.  This was done for both the changing pizza sizes and position of the background pizzas.
