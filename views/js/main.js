@@ -448,12 +448,12 @@ var resizePizzas = function(size) {
     return dx;
   }
 
+  //Kyle Cardiel - pulled all reptitive computations which were all the same outside of for loop
+  //              which chnaged the pizza side.
   var $randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
   var dx = determineDx($randomPizzaContainer[0], size);
   var newwidth = ($randomPizzaContainer[0].offsetWidth + dx) + 'px';
-
   var $randomPizzaContainerLength = document.querySelectorAll(".randomPizzaContainer").length;
-
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
@@ -508,8 +508,11 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+  var itemsLength = items.length;
+
+  var scrollTop = (document.body.scrollTop / 1250);
+  for (var i = 0; i < itemsLength; i++) {
+    var phase = Math.sin(scrollTop + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
