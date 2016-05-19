@@ -454,10 +454,10 @@ var resizePizzas = function(size) {
   // is more than just for web optimization, but for all coding optimizations.
   //Now the javascript code only has to apply the new width size to all the pizza for each
   //iteration.
-  var $randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
+  var $randomPizzaContainer = document.getElementsByClassName("randomPizzaContainer");
   var dx = determineDx($randomPizzaContainer[0], size);
   var newwidth = ($randomPizzaContainer[0].offsetWidth + dx) + 'px';
-  var $randomPizzaContainerLength = document.querySelectorAll(".randomPizzaContainer").length;
+  var $randomPizzaContainerLength = $randomPizzaContainer .length;
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
@@ -516,7 +516,7 @@ function updatePositions() {
   //that calculated the new pizza position. Removing repetitive calculations from loops
   //is more than just for web optimization, but for all coding optimizations.
   //Now the javascript code can calucate new position quicker.
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   var itemsLength = items.length;
   var scrollTop = (document.body.scrollTop / 1250);
 
@@ -536,13 +536,37 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+ window.addEventListener('scroll', updatePositions);
+ //I couldn't figure out how requestAnimationFrame works on scrolling?
+ // window.on('scroll', function() {
+ //    window.requestAnimationFrame(updatePositions);
+ //  });
+
+ // window.requestAnimationFrame(updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+
+  //Kyle Cardiel - Web Optimization
+  //Dynamically determine how many pizzas should be created on load based on the screen size.
+  //No need to load a fixed amount if they are never visiable. Althought always want to make sure
+  //a minimum number are created.
+  var windowHeight = window.innerHeight;
+  console.log(windowHeight);
+  var calcNumPizza = windowHeight/(cols * 2);
+  var minNumbPizza = cols * 4;
+  var numberOfPizzas;
+
+  if ( calcNumPizza < minNumbPizza){
+    numberOfPizzas = minNumbPizza;
+  } else {
+    numberOfPizzas = calcNumPizza;
+  }
+
+  console.log(numberOfPizzas);
+  for (var i = 0; i < numberOfPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
